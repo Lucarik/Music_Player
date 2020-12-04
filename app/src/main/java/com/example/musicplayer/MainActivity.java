@@ -1,26 +1,23 @@
 package com.example.musicplayer;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.res.ResourcesCompat;
-
-import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.Color;
-import android.graphics.ColorFilter;
-import android.graphics.drawable.Drawable;
+import android.app.Activity;
 import android.media.AudioAttributes;
 import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.view.MotionEvent;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -31,9 +28,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final String s = "https://drive.google.com/uc?export=download&id=1_c9xmC1VPiCQ_xKI7pgKNUreDKsD0TWa";
-        final String[] url = {"No link"};// = {"https://drive.google.com/uc?export=download&id=1_c9xmC1VPiCQ_xKI7pgKNUreDKsD0TWa"};
-        //String url = "https://uc42a8d384c20b83009ff2d1c4ec.dl.dropboxusercontent.com/cd/0/get/BEO-kVRQm2D5Hcwkr7vFt4pxBDDypXjuENu_KymmfNTUIBhMjX76kFkXx5LaRnu7-B0tx4ENvCzau24FIvTjnPBAvcrDgHZuwQwQrEIkMoZ1sw/file?_download_id=5799156576555939177195727906199755596122995110995005868153469585025&_notify_domain=www.dropbox.com&dl=1"; // your URL here
+        final String s = "https://drive.google.com/uc?export=download&id=1_c9xmC1VPiCQ_xKI7pgKNUreDKsD0TWa"; // Song for testing
+        final String[] url = {"No link"};// = {"https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_5MG.mp3"}; // Song for testing
         final MediaPlayer mediaPlayer = new MediaPlayer();
         mediaPlayer.setAudioAttributes(
                 new AudioAttributes.Builder()
@@ -41,8 +37,6 @@ public class MainActivity extends AppCompatActivity {
                         .setUsage(AudioAttributes.USAGE_MEDIA)
                         .build()
         );
-
-        //mediaPlayer.start();
 
         // Initialize buttons, text views, and control layout
         final Button play = findViewById(R.id.start);
@@ -64,11 +58,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (textURL.getText() != null) {
-                    url[0] = s;
-                    //url[0] = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";
-                    //url[0] = String.valueOf(textURL.getText());
+                    //url[0] = s; // Test song 1
+                    //url[0] = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"; // Test song 2
+                    url[0] = String.valueOf(textURL.getText());
 
                     // Reset media player
+                    rep.setVisibility(View.INVISIBLE);
                     mediaPlayer.reset();
                     final boolean[] tr = {false};
 
@@ -87,24 +82,15 @@ public class MainActivity extends AppCompatActivity {
                         Toast toast = Toast.makeText(getApplicationContext(), "Invalid link, please try again", Toast.LENGTH_SHORT);
                         toast.show();
                         return;
-                    }/*
-                    mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                        @Override
-                        public void onPrepared(MediaPlayer player) {
-                            //player.start();
-                        }
-                    });
-                    */
-                    /*
-                    try {
-                        mediaPlayer.prepare();
-                    } catch (IOException e) {
-                        e.printStackTrace();
                     }
 
-                     */
                     // Set controls layout to visible on successful mp3 song
-                    layout.setVisibility(View.VISIBLE);
+                    mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                        @Override
+                        public void onPrepared(MediaPlayer mp) {
+                            layout.setVisibility(View.VISIBLE);
+                        }
+                    });
 
                     // Get song title from meta data
                     MediaMetadataRetriever mmr = new MediaMetadataRetriever();
@@ -115,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
                     if (text != null)
                         title.setText(text);
                     else
-                        title.setText("No Title Found for Current Song");
+                        title.setText(R.string.noTitle);
 
                     // Handles case if playing old song while getting new song
                     if (!isPaused[0]) {
@@ -136,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
         instr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mediaPlayer.release();
+                //mediaPlayer.release();
                 openInstructions();
             }
         });
@@ -193,7 +179,31 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void openInstructions() {
-        Intent intent = new Intent(this, Instructions.class);
-        startActivity(intent);
+        showInstr(this);
+    }
+
+    // Opens a popup window of instructions
+    public static void showInstr(Activity a) {
+
+        // Get instructions layout
+        LayoutInflater inflater = a.getLayoutInflater();
+        View layout = inflater.inflate(R.layout.instructions,
+                (ViewGroup) a.findViewById(R.id.instructions1));
+
+        // initialize popup window
+        final PopupWindow pw = new PopupWindow(layout,
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT, true);
+
+        pw.showAtLocation(layout, Gravity.CENTER | Gravity.TOP, 0, 500);
+
+        // Set click event to close popup
+        layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // do anything when popupWindow was clicked
+                pw.dismiss(); // dismiss the window
+            }
+        });
     }
 }

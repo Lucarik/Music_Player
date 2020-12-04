@@ -3,4 +3,21 @@
     <string name="something_unclear">Something unclear?</string>
     <string name="instructions_here">Instructions here</string>
     <string name="repeat_on">Repeat on</string>
+    <string name="click_or_tap_outside_the_instructions_page_to_close_instruction">Click or tap outside the instructions page to close instruction</string>
+    <string name="instructions">Instructions</string>
+    <string name="add_an_mp3_link_in_the_field_asking_for_a_url">Add an mp3 link in the field asking for a URL</string>
+    <string name="after_your_link_is_set_click_find_song">After your link is set, click \'Find Song\'</string>
+    <string name="mp3_player_controls">MP3 Player Controls</string>
+    <string name="stop_button">Stop Button</string>
+    <string name="play_pause_button">Play/Pause Button</string>
+    <string name="the_middle_button_can_start_or_resume_the_song_if_paused_or_has_not_started_yet_if_the_song_is_playing_the_button_pauses_the_song">The middle button can start or resume the song if paused or has not started yet. If the song is playing, the button pauses the song</string>
+    <string name="repeat_button">Repeat Button</string>
+    <string name="the_rightmost_repeat_button_replays_the_song_when_the_end_is_reached_this_continues_until_the_repeat_button_is_clicked_once_more_the_repeat_symbol_to_the_top_left_is_an_indicator_repeat_is_active">The rightmost \'Repeat\' button replays the song when the end is reached. This continues until the repeat button is clicked once more. The repeat symbol to the top left is an indicator repeat is active</string>
+    <string name="the_leftmost_square_stop_button_stops_and_moves_song_progress_to_the_start">The leftmost square \'Stop\' button stops and moves song progress to the start</string>
+    <string name="mp3_music_player">Mp3 Music Player</string>
+    <string name="insert_mp3_url_here">Insert mp3 URL here</string>
+    <string name="find_song">Find Song</string>
+    <string name="currently_playing">Currently Playing</string>
+    <string name="no_song">No Song</string>
+    <string name="noTitle">No Title Found for Current Song</string>
 </resources>
