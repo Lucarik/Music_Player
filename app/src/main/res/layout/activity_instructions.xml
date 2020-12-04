@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Instructions">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Instructions"
+        android:layout_marginBottom="15dp"
+        android:layout_gravity="center_horizontal"
+        android:textAlignment="center"
+        android:textSize="32sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:layout_gravity="center_horizontal"
+        android:text="Add an mp3 link in the field asking for a URL"
+        android:textAlignment="center"
+        android:textSize="20sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="After your link is set, click 'Find Song'"
+        android:layout_marginBottom="45dp"
+        android:layout_gravity="center_horizontal"
+        android:textAlignment="center"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="MP3 Player Controls"
+        android:layout_marginBottom="15dp"
+        android:layout_gravity="center_horizontal"
+        android:textAlignment="center"
+        android:textSize="32sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Stop Button"
+        android:layout_marginBottom="5dp"
+        android:layout_gravity="center_horizontal"
+        android:textAlignment="center"
+        android:textSize="26sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="The leftmost square 'Stop' button stops and moves song progress to the start"
+        android:layout_marginBottom="15dp"
+        android:layout_gravity="center_horizontal"
+        android:textAlignment="center"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Play/Pause Button"
+        android:layout_marginBottom="5dp"
+        android:layout_gravity="center_horizontal"
+        android:textAlignment="center"
+        android:textSize="26sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="The middle button can start or resume the song if paused or has not started yet. If the song is playing, the button pauses the song"
+        android:layout_marginBottom="15dp"
+        android:layout_gravity="center_horizontal"
+        android:textAlignment="center"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Repeat Button"
+        android:layout_marginBottom="5dp"
+        android:layout_gravity="center_horizontal"
+        android:textAlignment="center"
+        android:textSize="26sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="The rightmost 'Repeat' button replays the song when the end is reached. This continues until the repeat button is clicked once more. The repeat symbol to the top left is an indicator repeat is active"
+        android:layout_marginBottom="15dp"
+        android:layout_gravity="center_horizontal"
+        android:textAlignment="center"
+        android:textSize="20sp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/main_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Return to mp3 player" />
+
+    </LinearLayout>
+</ScrollView>
